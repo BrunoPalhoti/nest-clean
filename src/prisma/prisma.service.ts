@@ -1,8 +1,9 @@
 import { Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common'
 import { PrismaClient } from '@prisma/client'
-import * as dotenv from 'dotenv'
+import { envSchema } from '../env'
 
-dotenv.config()
+const env = envSchema.parse(process.env)
+
 @Injectable()
 export class PrismaService
   extends PrismaClient
@@ -13,7 +14,7 @@ export class PrismaService
       log: ['query', 'info', 'warn', 'error'],
     })
 
-    if (process.env.DEV === 'true') {
+    if (env.DEV === 'true') {
       this.$use(async (params, next) => {
         const before = Date.now()
         try {

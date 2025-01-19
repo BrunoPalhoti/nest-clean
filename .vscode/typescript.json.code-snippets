@@ -1,0 +1,59 @@
+{
+  "NestJS Controller": {
+    "prefix": "nestjs-controller",
+    "body": [
+      "import { Controller } from '@nestjs/common';",
+      "",
+      "@Controller('$1')",
+      "export class ${2:AppController} {",
+      "  $0",
+      "}"
+  ],
+  "description": "Cria um Controller básico do NestJS"
+},
+  "NestJS Service": {
+    "prefix": "nestjs-service",
+    "body": [
+      "import { Injectable } from '@nestjs/common';",
+      "",
+      "@Injectable()",
+      "export class ${1:NomeDoService} {",
+      "  constructor() {}",
+      "",
+      "  ${2:getHello()}(): ${3:string} {",
+      "    return ${4:'Hello from ${1:NomeDoService}!'};",
+      "  }",
+      "}"
+    ],
+    "description": "Cria um Service básico do NestJS"
+  },
+  "NestJS Module": {
+    "prefix": "nestjs-module",
+    "body": [
+      "import { Module } from '@nestjs/common';",
+      "import { ${1:NomeDoController} } from './${1:NomeDoController}.controller';",
+      "import { ${2:NomeDoService} } from './${2:NomeDoService}.service';",
+      "",
+      "@Module({",
+      "  controllers: [${1:NomeDoController}],",
+      "  providers: [${2:NomeDoService}]",
+      "})",
+      "export class ${3:NomeDoModule} {}"
+    ],
+    "description": "Cria um Module básico do NestJS"
+  },
+  "NestJS pipe": {
+    "prefix": "nestjs-pipe",
+    "body": [
+      "import { PipeTransform, Injectable, ArgumentMetadata } from '@nestjs/common';",
+      "",
+      "@Injectable()",
+      "export class ${1:NomeDoPipe} implements PipeTransform {",
+      "  transform(value: any, metadata: ArgumentMetadata) {",
+      "    return value;",
+      "  }",
+      "}"
+    ],
+    "description": "Cria um Pipe básico do NestJS"
+  },
+}
