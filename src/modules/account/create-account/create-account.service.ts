@@ -1,5 +1,5 @@
 import { ConflictException, Injectable } from '@nestjs/common'
-import { UserRepository } from '../../shared/user/user.repository'
+import { UserRepository } from '../../../shared/user/user.repository'
 import { hash } from 'bcryptjs'
 import { CreateUserSchema } from './schemas/create-account.schema'
 

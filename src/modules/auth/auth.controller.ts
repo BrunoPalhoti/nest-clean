@@ -1,5 +1,5 @@
 import { Body, Controller, Post, UsePipes } from '@nestjs/common'
-import { ZodValidationPipe } from '../pipes/zod-validation-pipe'
+import { ZodValidationPipe } from '../../pipes/zod-validation-pipe'
 import { AuthService } from './auth.service'
 import {
   authenticateBodySchema,

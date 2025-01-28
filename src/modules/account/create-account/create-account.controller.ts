@@ -1,11 +1,11 @@
 import { Controller, Post, Body, UsePipes } from '@nestjs/common'
-import { ZodValidationPipe } from '../../pipes/zod-validation-pipe'
+import { ZodValidationPipe } from '../../../pipes/zod-validation-pipe'
 import { CreateAccountService } from './create-account.service'
 import {
   CreateUserSchema,
   createUserSchema,
 } from './schemas/create-account.schema'
-import { SuccessResponseException } from '../../exceptions/success-response.exception'
+import { SuccessResponseException } from '../../../exceptions/success-response.exception'
 
 @Controller('/accounts')
 export class CreateAccountController {

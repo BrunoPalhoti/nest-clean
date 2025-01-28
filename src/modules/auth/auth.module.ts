@@ -3,10 +3,10 @@ import { Module } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { JwtModule } from '@nestjs/jwt'
 import { PassportModule } from '@nestjs/passport'
-import { Env } from '../env'
+import { Env } from '../../env'
 import { JwtStrategy } from './jwt.strategy'
-import { UserRepository } from '../shared/user/user.repository'
-import { PrismaService } from '../prisma/prisma.service'
+import { UserRepository } from '../../shared/user/user.repository'
+import { PrismaService } from '../../prisma/prisma.service'
 import { AuthController } from './auth.controller'
 
 @Module({
