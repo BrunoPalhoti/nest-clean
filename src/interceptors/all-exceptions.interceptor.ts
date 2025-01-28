@@ -6,7 +6,9 @@ import {
   HttpStatus,
 } from '@nestjs/common'
 import { Request, Response } from 'express'
+import { envSchema } from '../env'
 
+const env = envSchema.parse(process.env)
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
   catch(exception: unknown, host: ArgumentsHost) {
@@ -31,15 +33,20 @@ export class AllExceptionsFilter implements ExceptionFilter {
         message: responseMessage.message || 'Success',
       })
     } else {
-      response.status(status).json({
-        data: {
-          statusCode: status,
-          message: responseMessage.message || 'Internal server error',
-          errors: responseMessage.errors || [],
-          timestamp: new Date().toISOString(),
-          path: request.url,
-        },
-      })
+      console.log('AQUI')
+      const errorResponse: any = {
+        statusCode: status,
+        message: responseMessage.message || 'Internal server error',
+        errors: responseMessage.errors || [],
+        timestamp: new Date().toISOString(),
+        path: request.url,
+      }
+
+      if (env.DEV === 'true' && exception instanceof Error) {
+        errorResponse.stack = exception.stack
+      }
+
+      response.status(status).json({ data: errorResponse })
     }
   }
 }
