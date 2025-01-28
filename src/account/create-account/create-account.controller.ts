@@ -5,6 +5,7 @@ import {
   CreateUserSchema,
   createUserSchema,
 } from './schemas/create-account.schema'
+import { SuccessResponseException } from '../../exceptions/success-response.exception'
 
 @Controller('/accounts')
 export class CreateAccountController {
@@ -13,6 +14,8 @@ export class CreateAccountController {
   @Post()
   @UsePipes(new ZodValidationPipe(createUserSchema))
   async createAccount(@Body() body: CreateUserSchema) {
-    return this.createAccountService.createAccount(body)
+    await this.createAccountService.createAccount(body)
+
+    throw new SuccessResponseException('Conta criada com sucesso')
   }
 }
