@@ -5,6 +5,7 @@ import {
   authenticateBodySchema,
   AuthenticateBodySchema,
 } from './schemas/auth.schema'
+import { AuthResponse } from './auth.types'
 
 @Controller('/sessions')
 export class AuthController {
@@ -12,8 +13,9 @@ export class AuthController {
 
   @Post()
   @UsePipes(new ZodValidationPipe(authenticateBodySchema))
-  async authenticate(@Body() body: AuthenticateBodySchema) {
-    console.log('body', body)
+  async authenticate(
+    @Body() body: AuthenticateBodySchema,
+  ): Promise<AuthResponse> {
     return this.authService.validateUser(body)
   }
 }

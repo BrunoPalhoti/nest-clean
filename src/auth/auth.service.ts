@@ -3,6 +3,7 @@ import { UserRepository } from '../user/user.repository'
 import { JwtService } from '@nestjs/jwt'
 import { compare } from 'bcryptjs'
 import { AuthenticateBodySchema } from './schemas/auth.schema'
+import { AuthResponse } from './auth.types'
 
 @Injectable()
 export class AuthService {
@@ -11,7 +12,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async validateUser(loginUser: AuthenticateBodySchema) {
+  async validateUser(loginUser: AuthenticateBodySchema): Promise<AuthResponse> {
     const { email, password } = loginUser
 
     const user = await this.userRepository.findByEmail(email)
