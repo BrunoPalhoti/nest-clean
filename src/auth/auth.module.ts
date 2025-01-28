@@ -5,7 +5,7 @@ import { JwtModule } from '@nestjs/jwt'
 import { PassportModule } from '@nestjs/passport'
 import { Env } from '../env'
 import { JwtStrategy } from './jwt.strategy'
-import { UserRepository } from '../user/user.repository'
+import { UserRepository } from '../shared/user/user.repository'
 import { PrismaService } from '../prisma/prisma.service'
 import { AuthController } from './auth.controller'
 

@@ -1,4 +1,4 @@
-import { UserModule } from './user/user.module'
+import { UserModule } from './shared/user/user.module'
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { PrismaService } from './prisma/prisma.service'

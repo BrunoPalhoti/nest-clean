@@ -11,7 +11,7 @@ import { AuthResponse } from './auth.types'
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  @Post()
+  @Post('/login')
   @UsePipes(new ZodValidationPipe(authenticateBodySchema))
   async authenticate(
     @Body() body: AuthenticateBodySchema,

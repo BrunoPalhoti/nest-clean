@@ -1,5 +1,5 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common'
-import { UserRepository } from '../user/user.repository'
+import { UserRepository } from '../shared/user/user.repository'
 import { JwtService } from '@nestjs/jwt'
 import { compare } from 'bcryptjs'
 import { AuthenticateBodySchema } from './schemas/auth.schema'
