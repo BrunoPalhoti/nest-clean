@@ -2,14 +2,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common'
 import { UserRepository } from '../user/user.repository'
 import { JwtService } from '@nestjs/jwt'
 import { compare } from 'bcryptjs'
-import { z } from 'zod'
-
-const authenticateBodySchema = z.object({
-  email: z.string().email(),
-  password: z.string(),
-})
-
-type AuthenticateBodySchema = z.infer<typeof authenticateBodySchema>
+import { AuthenticateBodySchema } from './schemas/auth.schema'
 
 @Injectable()
 export class AuthService {
