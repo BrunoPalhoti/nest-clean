@@ -1,4 +1,4 @@
-import { Controller, Post, Body, UsePipes } from '@nestjs/common'
+import { Controller, Post, Body, UsePipes, UseGuards } from '@nestjs/common'
 import { ZodValidationPipe } from '../../../pipes/zod-validation-pipe'
 import { CreateAccountService } from './create-account.service'
 import {
@@ -6,8 +6,10 @@ import {
   createUserSchema,
 } from './schemas/create-account.schema'
 import { SuccessResponseException } from '../../../exceptions/success-response.exception'
+import { AuthGuard } from '@nestjs/passport'
 
 @Controller('/accounts')
+@UseGuards(AuthGuard('jwt'))
 export class CreateAccountController {
   constructor(private createAccountService: CreateAccountService) {}
 
@@ -16,6 +18,6 @@ export class CreateAccountController {
   async createAccount(@Body() body: CreateUserSchema) {
     await this.createAccountService.createAccount(body)
 
-    throw new SuccessResponseException('Conta criada com sucesso')
+    throw new SuccessResponseException({ message: 'Conta criada com sucesso' })
   }
 }
