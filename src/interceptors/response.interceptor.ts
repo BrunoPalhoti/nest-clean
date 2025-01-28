@@ -13,26 +13,23 @@ export class ResponseInterceptor<T>
   implements
     NestInterceptor<
       T,
-      { data: T } | { data: { status: string; message: string } }
+      | { status: string; message: string; data?: T }
+      | { status: string; message: string; errors?: string[] }
     >
 {
   intercept(
     context: ExecutionContext,
     next: CallHandler<T>,
-  ): Observable<{ data: T } | { data: { status: string; message: string } }> {
+  ): Observable<
+    | { status: string; message: string; data?: T }
+    | { status: string; message: string; errors?: string[] }
+  > {
     return next.handle().pipe(
-      map((data) => {
-        if (data) {
-          return { data }
-        } else {
-          return {
-            data: {
-              status: 'success',
-              message: 'Operação realizada com sucesso',
-            },
-          }
-        }
-      }),
+      map((data) => ({
+        status: 'success',
+        message: 'Operação realizada com sucesso',
+        ...(data && { data }),
+      })),
       catchError((error) => {
         if (error instanceof HttpException) {
           return throwError(() => error)
