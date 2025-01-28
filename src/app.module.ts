@@ -1,8 +1,8 @@
+import { AccountModule } from './account/account.module'
 import { UserModule } from './shared/user/user.module'
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { PrismaService } from './prisma/prisma.service'
-import { CreateAccountController } from './controllers/create-account.controller'
 import { envSchema } from './env'
 import { AuthModule } from './auth/auth.module'
 import { CreateQuestionController } from './controllers/create-question.controller'
@@ -15,13 +15,10 @@ import { AuthController } from './auth/auth.controller'
       isGlobal: true,
     }),
     AuthModule,
+    AccountModule,
     UserModule,
   ],
-  controllers: [
-    CreateAccountController,
-    CreateQuestionController,
-    AuthController,
-  ],
+  controllers: [CreateQuestionController, AuthController],
   providers: [PrismaService],
 })
 export class AppModule {}

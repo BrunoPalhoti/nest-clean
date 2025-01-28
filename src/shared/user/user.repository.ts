@@ -6,7 +6,7 @@ import { CreateUserDto, User } from './user.types'
 export class UserRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  async findByEmail(email: string): Promise<User | null> {
+  async findUniqueByEmail(email: string): Promise<User | null> {
     return this.prisma.user.findUnique({
       where: {
         email,

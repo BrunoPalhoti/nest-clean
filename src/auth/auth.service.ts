@@ -15,7 +15,7 @@ export class AuthService {
   async validateUser(loginUser: AuthenticateBodySchema): Promise<AuthResponse> {
     const { email, password } = loginUser
 
-    const user = await this.userRepository.findByEmail(email)
+    const user = await this.userRepository.findUniqueByEmail(email)
 
     if (!user) {
       throw new UnauthorizedException('User credentials do not match.')
