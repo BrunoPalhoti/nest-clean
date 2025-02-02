@@ -3,10 +3,17 @@ import { CreateAccountController } from './create-account/create-account.control
 import { PrismaService } from '../../prisma/prisma.service'
 import { CreateAccountService } from './create-account/create-account.service'
 import { UserRepository } from '../../shared/user/user.repository'
+import { ListAccountService } from './list-account/list-account.service'
+import { ListAccountController } from './list-account/list-account.controller'
 
 @Module({
   imports: [],
-  controllers: [CreateAccountController],
-  providers: [CreateAccountService, PrismaService, UserRepository],
+  controllers: [CreateAccountController, ListAccountController],
+  providers: [
+    CreateAccountService,
+    ListAccountService,
+    PrismaService,
+    UserRepository,
+  ],
 })
 export class AccountModule {}
