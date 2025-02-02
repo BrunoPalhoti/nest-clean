@@ -18,7 +18,7 @@ export class CreateAccountController {
   async createAccount(@Body() body: CreateUserSchema) {
     await this.createAccountService.createAccount(body)
 
-    throw new SuccessResponseException({
+    return new SuccessResponseException({
       message: 'Account created successfully',
     })
   }
